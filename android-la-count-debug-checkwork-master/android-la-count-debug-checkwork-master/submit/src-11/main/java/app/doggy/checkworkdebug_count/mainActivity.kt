@@ -5,11 +5,11 @@ import android.os.Bundle
 import app.doggy.checkworkdebug_count.databinding.ActivityMainBinding
 
 /**
- * 問題12
- * activity_main.xmlのレイアウトを整えてください。
+ * 問題11
+ * mainActivity.ktにおける名前という名前を全て、より良い名前にしてください。
  */
 
-class MainActivity : AppCompatActivity() {
+class mainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var count: Int = 0
+        var Count: Int = 0
 
         binding.plusButton.setOnClickListener {
-            count += 1
-            binding.countText.text = count.toString()
+            Count += 1
+            binding.countText.text = Count.toString()
         }
     }
 }
