@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="64sp"
-        app:layout_constraintBottom_toTopOf="@id/plas_bottan"
+        app:layout_constraintBottom_toTopOf="@id/plus_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/plas_bottan"
+        android:id="@+id/plus_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="plus"
