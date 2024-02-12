@@ -5,9 +5,8 @@ import android.os.Bundle
 import app.doggy.checkworkdebug_count.databinding.ActivityMainBinding
 
 /**
- * 問題14
- * 3の倍数で"Fizz"、5の倍数で"Buzz"、15の倍数で"FizzBuzz"、それ以外では数字を表示してください。
- * ログ出力を使ってデバッグしてみましょう！
+ * 問題15
+ * MainActivity.ktのみを修正して、activity_main.xmlで定義したレイアウトを表示させてください。
  */
 
 class MainActivity : AppCompatActivity() {
@@ -17,22 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         var count: Int = 0
 
         binding.plusButton.setOnClickListener {
             count += 1
-
-            if (count % 3 == 0) {
-                binding.countText.text = "Fizz"
-            } else if (count % 5 == 0) {
-                binding.countText.text = "Buzz"
-            } else if (count % 15 == 0) {
-                binding.countText.text = "FizzBuzz"
-            } else {
-                binding.countText.text = count.toString()
-            }
+            binding.countText.text = count.toString()
         }
     }
 }
