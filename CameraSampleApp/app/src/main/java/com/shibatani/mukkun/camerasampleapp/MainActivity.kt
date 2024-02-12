@@ -1,6 +1,7 @@
 package com.shibatani.mukkun.camerasampleapp
 
 import android.content.ContentValues
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.core.content.contentValuesOf
 import com.shibatani.mukkun.camerasampleapp.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
+import android.Manifest
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -114,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all{
-        ContextCompat.checkSelfPermission(baseContext, it) == packageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(
