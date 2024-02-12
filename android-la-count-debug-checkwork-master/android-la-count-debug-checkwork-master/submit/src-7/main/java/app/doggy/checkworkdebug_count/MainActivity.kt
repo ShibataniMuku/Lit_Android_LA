@@ -5,7 +5,7 @@ import android.os.Bundle
 import app.doggy.checkworkdebug_count.databinding.ActivityMainBinding
 
 /**
- * 問題8
+ * 問題7
  * MainActivity.ktのみを修正して、アプリを起動してください。
  */
 
@@ -18,9 +18,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var count: Int
+        var count: Int = 0
 
-        binding.plusButton.setOnClickListener {
+        binding.plasBottan.setOnClickListener {
             count += 1
             binding.countText.text = count.toString()
         }
