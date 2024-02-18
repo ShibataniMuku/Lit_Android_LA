@@ -6,6 +6,13 @@ plugins {
 android {
     namespace = "com.shibatani.mukkun.countchallenge"
     compileSdk = 34
+    dependencies {
+        // AndroidXを使用している場合
+        implementation 'com.google.android.material:material:1.0.0'
+
+        // AndroidXへ移行できない場合
+        implementation 'com.android.support:design:28.0.0'
+    }
 
     defaultConfig {
         applicationId = "com.shibatani.mukkun.countchallenge"
@@ -32,6 +39,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures{
+        viewBinding = true
     }
 }
 
