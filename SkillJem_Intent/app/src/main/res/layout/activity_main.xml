@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/intent_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="画面遷移" />
+
+    <Button
+        android:id="@+id/play_store_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAYストア" />
+
+    <Button
+        android:id="@+id/map_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地図" />
+
+    <Button
+        android:id="@+id/browser_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ブラウザ" />
+
+    <Button
+        android:id="@+id/gallery_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ギャラリー" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:src="@tools:sample/avatars" />
+</LinearLayout>
