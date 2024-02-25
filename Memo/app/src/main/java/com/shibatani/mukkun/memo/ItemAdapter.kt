@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
-    val data = mutableListOf<String>("test1", "test2", "test3")
+    val data = mutableListOf<String>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val textView: TextView
@@ -29,5 +29,13 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     }
 
     override fun getItemCount() = data.size
+
+    public fun getItemAtPosition(position: Int) : String? {
+        if (position < 0 || position >= data.size) {
+            return null
+        }
+        val item = data[position]
+        return item
+    }
 
 }
