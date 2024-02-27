@@ -11,6 +11,20 @@ class ItemListRecyclerViewAdapter (
     private val bookListData: MutableList<Item>)
     : RecyclerView.Adapter<ItemListRecyclerViewAdapter.BookListRecyclerViewHolder>() {
 
+    // リスナを格納する変数を定義（lateinitで初期化を遅らせている）
+    private lateinit var listener: OnBookCellClickListener
+
+    // インターフェースを作成
+    interface  OnBookCellClickListener {
+        fun onItemClick(book: Item)
+    }
+
+    // リスナーをセット
+    fun setOnBookCellClickListener(listener: OnBookCellClickListener) {
+        // 定義した変数listenerに実行したい処理を引数で渡す（BookListFragmentで渡している）
+        this.listener = listener
+    }
+
     // 画面部品要素を構成するクラスを定義
     class BookListRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // ここではcell_item_list.xmlより各レイアウト要素を取得して変数に格納している
@@ -35,6 +49,12 @@ class ItemListRecyclerViewAdapter (
         holder.bookName.text = book.name
         holder.bookPrice.text = book.price.toString()
         holder.bookPurchaseDate.text = book.date
+
+        // 4. セルのクリックイベントにリスナをセット
+        holder.itemView.setOnClickListener {
+            // セルがクリックされた時にインターフェースの処理が実行される
+            listener.onItemClick(book)
+        }
     }
 
     // データ件数を返すメソッド

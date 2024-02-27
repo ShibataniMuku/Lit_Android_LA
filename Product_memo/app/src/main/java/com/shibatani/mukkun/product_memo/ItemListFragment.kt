@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 
 class ItemListFragment : Fragment() {
 
@@ -34,21 +36,42 @@ class ItemListFragment : Fragment() {
         // 一覧画面の各セルの区切り線を作成
         bookListRecyclerView.addItemDecoration(DividerItemDecoration(view.context, linearLayoutManager.orientation))
 
+        // 書籍情報セルのクリック処理
+        adapter.setOnBookCellClickListener(
+            // インターフェースの再利用は想定しておらず、その場限りでしか使わないためobject式として宣言
+            object : ItemListRecyclerViewAdapter.OnBookCellClickListener {
+                override fun onItemClick(book: Item) {
+                    // 書籍データを渡す処理
+                    setFragmentResult("bookData", bundleOf(
+                        "bookName" to book.name,
+                        "bookPrice" to book.price,
+                        "bookPurchaseDate" to book.date
+                    ))
+
+                    // 画面遷移処理
+                    parentFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fl_activity_main, ItemFragment())
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
+        )
+
         return view
     }
 
-    // アダプターにセットするためのサンプルデータを作成するメソッド
+    // サンプルデータ作成メソッド
     private fun createDummyBookList(): MutableList<Item> {
-        var itemList: MutableList<Item> = ArrayList()
+        var bookList: MutableList<Item> = ArrayList()
         var book = Item("Kotlinスタートブック", 2800, "2020/11/24")
 
-        // 20件のサンプルーデータを登録
+        // 20件のダミーデータを登録
         var i = 0
         while (i < 20) {
             i++
-            itemList.add(book)
+            bookList.add(book)
         }
-        itemList.add(Item("AndroidStudioスタートブック", 2800, "2024/02/27"))
-        return itemList
+        return bookList
     }
 }
