@@ -20,7 +20,7 @@ class ItemListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
         // タイトルをセット
-        activity?.title = "書籍情報一覧"
+        activity?.title = "メモ一覧"
 
         // レイアウト要素RecyclerViewを取得
         val bookListRecyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
@@ -42,10 +42,10 @@ class ItemListFragment : Fragment() {
             object : ItemListRecyclerViewAdapter.OnBookCellClickListener {
                 override fun onItemClick(book: Item) {
                     // 書籍データを渡す処理
-                    setFragmentResult("bookData", bundleOf(
-                        "bookName" to book.name,
-                        "bookPrice" to book.price,
-                        "bookPurchaseDate" to book.date
+                    setFragmentResult("itemData", bundleOf(
+                        "itemTitle" to book.title,
+                        "itemContent" to book.content,
+                        //"bookPurchaseDate" to book.date
                     ))
 
                     // 画面遷移処理
@@ -64,7 +64,7 @@ class ItemListFragment : Fragment() {
     // サンプルデータ作成メソッド
     private fun createDummyBookList(): MutableList<Item> {
         var bookList: MutableList<Item> = ArrayList()
-        var book = Item("Kotlinスタートブック", 2800, "2020/11/24")
+        var book = Item("メモのタイトル", "メモの本文")
 
         // 20件のダミーデータを登録
         var i = 0
