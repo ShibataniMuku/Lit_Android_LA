@@ -1,6 +1,7 @@
 package com.shibatani.mukkun.product_memo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,10 @@ class ItemListFragment : Fragment() {
         val bookListRecyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         // LayoutManagerを取得
         val linearLayoutManager = LinearLayoutManager(view.context)
+        // ダミーのデータを作成
+        val dummyBookList = createDummyBookList()
         // ダミーデータをセットしたアダプターを作成
-        val adapter = ItemListRecyclerViewAdapter(createDummyBookList())
+        val adapter = ItemListRecyclerViewAdapter(dummyBookList)
 
         // linearLayoutManager と adapter をRecyclerViewにセット
         bookListRecyclerView.layoutManager = linearLayoutManager
@@ -48,7 +51,7 @@ class ItemListFragment : Fragment() {
                         //"bookPurchaseDate" to book.date
                     ))
 
-                    // 画面遷移処理
+                    // 詳細画面への遷移処理
                     parentFragmentManager
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, ItemFragment())
