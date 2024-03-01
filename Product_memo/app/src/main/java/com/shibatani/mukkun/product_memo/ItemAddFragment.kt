@@ -1,5 +1,7 @@
 package com.shibatani.mukkun.product_memo
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,9 @@ import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class ItemAddFragment : Fragment(){
     var title: String = ""
@@ -20,32 +25,35 @@ class ItemAddFragment : Fragment(){
 
         activity?.title = "メモの編集"
 
-//        // ホーム画面から渡されたデータをviewに表示する
-//        setFragmentResultListener("itemEditedData") { _, bundle ->
-//            title = bundle.getString("itemTitle").toString()
-//            content = bundle.getString("itemContent").toString()
-//            index = bundle.getInt("itemIndex")
-//            view.findViewById<EditText>(R.id.edit_title_text).setText(title)
-//            view.findViewById<EditText>(R.id.edit_content_text).setText(content)
-//        }
-
         view.findViewById<Button>(R.id.complete_button).setOnClickListener {
             title = view.findViewById<EditText>(R.id.add_title_text).text.toString()
             content = view.findViewById<EditText>(R.id.add_content_text).text.toString()
 
-            // アイテムデータをホーム画面へ渡す処理
-            setFragmentResult("itemAddedData", bundleOf(
-                "itemTitle" to title,
-                "itemContent" to content,
-                "itemIndex" to index
-            ))
+            if(title != "" && content != ""){
+                // データの読み込み
+                var bookList: MutableList<Item> = ArrayList()
+                val gson = Gson()
+                val pref: SharedPreferences = requireContext().getSharedPreferences("pref", MODE_PRIVATE)
+                val json = pref.getString("ItemList", null)
+                if (json != null) {
+                    bookList = gson.fromJson<ArrayList<Item>>(
+                        json,
+                        object : TypeToken<ArrayList<Item?>?>() {}.type
+                    )
+                }
+                // データの追加
+                bookList.add(Item(title, content, bookList.count()))
+                // データの保存
+                pref.edit().putString("ItemList", gson.toJson(bookList)).apply()
 
-            // ホーム画面への遷移処理
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.fl_activity_main, ItemListFragment())
-                .addToBackStack(null)
-                .commit()
+                // ホーム画面への遷移処理
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fl_activity_main, ItemListFragment())
+                    .addToBackStack(null)
+                    .commit()
+
+            }
         }
 
         return view
