@@ -30,6 +30,7 @@ class ItemListRecyclerViewAdapter (
         // ここではcell_item_list.xmlより各レイアウト要素を取得して変数に格納している
         var itemTitle: TextView = itemView.findViewById(R.id.cell_item_title_text)
         var itemContent: TextView = itemView.findViewById(R.id.cell_item_content_text)
+        var itemIndex: Int = 0
         //var bookPurchaseDate: TextView = itemView.findViewById(R.id.tv_book_purchase_date)
     }
 
@@ -44,11 +45,12 @@ class ItemListRecyclerViewAdapter (
     override fun onBindViewHolder(holder: BookListRecyclerViewHolder, position: Int) {
         // positionは表示するリストbookListDataのインデックス番号のようなもの
         val book = bookListData[position]
+        book.index = position
 
         // BookListRecyclerViewHolderより取得したレイアウト要素に書籍情報を格納
         holder.itemTitle.text = book.title
         holder.itemContent.text = book.content
-        //holder.bookPurchaseDate.text = book.date
+        holder.itemIndex = book.index
 
         // 4. セルのクリックイベントにリスナをセット
         holder.itemView.setOnClickListener {

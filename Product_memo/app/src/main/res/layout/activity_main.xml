@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <!--    このFrameLayoutにFragmentを表示する -->
+
     <FrameLayout
         android:id="@+id/fl_activity_main"
         android:layout_width="0dp"
@@ -16,6 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,30 +9,32 @@ import android.widget.EditText
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 
-class ItemEditFragment : Fragment(){
-    lateinit var title: String
-    lateinit var content: String
+class ItemAddFragment : Fragment(){
+    var title: String = ""
+    var content: String = ""
     var index: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_item_edit, container, false)
+        val view = inflater.inflate(R.layout.fragment_item_add, container, false)
 
         activity?.title = "メモの編集"
 
-        // 詳細画面から渡されたデータをviewに表示する
-        setFragmentResultListener("itemEditedData") { _, bundle ->
-            title = bundle.getString("itemTitle").toString()
-            content = bundle.getString("itemContent").toString()
-            index = bundle.getInt("itemIndex")
-            view.findViewById<EditText>(R.id.edit_title_text).setText(title)
-            view.findViewById<EditText>(R.id.edit_content_text).setText(content)
-        }
+//        // ホーム画面から渡されたデータをviewに表示する
+//        setFragmentResultListener("itemEditedData") { _, bundle ->
+//            title = bundle.getString("itemTitle").toString()
+//            content = bundle.getString("itemContent").toString()
+//            index = bundle.getInt("itemIndex")
+//            view.findViewById<EditText>(R.id.edit_title_text).setText(title)
+//            view.findViewById<EditText>(R.id.edit_content_text).setText(content)
+//        }
 
         view.findViewById<Button>(R.id.complete_button).setOnClickListener {
+            title = view.findViewById<EditText>(R.id.add_title_text).text.toString()
+            content = view.findViewById<EditText>(R.id.add_content_text).text.toString()
+
             // アイテムデータをホーム画面へ渡す処理
-            setFragmentResult("itemCompletedData", bundleOf(
+            setFragmentResult("itemAddedData", bundleOf(
                 "itemTitle" to title,
                 "itemContent" to content,
                 "itemIndex" to index

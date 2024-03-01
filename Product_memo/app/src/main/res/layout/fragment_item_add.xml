@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edit_title_text"
+        android:id="@+id/add_title_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -21,19 +21,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edit_content_text"
+        android:id="@+id/add_content_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="本文"
-        android:inputType="textMultiLine"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_title_text" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/complete_button"

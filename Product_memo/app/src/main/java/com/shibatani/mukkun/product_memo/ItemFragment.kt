@@ -15,6 +15,7 @@ import com.shibatani.mukkun.product_memo.databinding.FragmentItemEditBinding
 class ItemFragment : Fragment() {
     lateinit var title: String
     lateinit var content:String
+    var index: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,9 +27,9 @@ class ItemFragment : Fragment() {
         setFragmentResultListener("itemData") { _, bundle ->
             title = bundle.getString("itemTitle").toString()
             content = bundle.getString("itemContent").toString()
+            index = bundle.getInt("itemIndex")
             view.findViewById<TextView>(R.id.cell_item_title_text).text = title
             view.findViewById<TextView>(R.id.cell_item_content_text).text = content
-            //view.findViewById<TextView>(R.id.tv_book_purchase_date).text = bundle.getString("bookPurchaseDate")
         }
 
         view.findViewById<Button>(R.id.edit_button).setOnClickListener {
@@ -36,7 +37,7 @@ class ItemFragment : Fragment() {
             setFragmentResult("itemEditedData", bundleOf(
                 "itemTitle" to title,
                 "itemContent" to content,
-                //"bookPurchaseDate" to book.date
+                "itemIndex" to index
             ))
 
             // 編集画面への遷移処理
