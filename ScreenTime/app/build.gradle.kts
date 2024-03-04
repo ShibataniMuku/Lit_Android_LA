@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.shibatani.mukkun.product_memo"
+    namespace = "com.shibatani.mukkun.screentime"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.shibatani.mukkun.product_memo"
+        applicationId = "com.shibatani.mukkun.screentime"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -33,7 +33,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
     buildFeatures{
         viewBinding = true
     }
